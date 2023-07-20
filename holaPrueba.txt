@@ -1,1 +1,35 @@
-hola  como esta
+create database Personalizacion
+use Personalizacion
+
+Create table Usuario(
+idUsuario int identity(1,1) primary key,
+nombre varchar(30) not null,
+usuario varchar(15) not null,
+password varchar(15) not null
+); 
+
+Create table Diseño(
+DisId int identity(1,1) primary key,
+Discodigo varchar(2) not null, 
+DisCategoria varchar(60) not null, --polos o poleras--
+DisNombre varchar(60) not null,
+DisDescripcion varchar(100) not null,
+DisFecha datetime not null,
+DisPrecioUn decimal (10,2),
+DisImagen VARBINARY(MAX));
+
+Create table DetalleDiseño(
+DetId int identity(1,1) primary key,
+DiseñoId int NOT NULL,
+DetTela decimal (10,2),
+DetHilo decimal (10,2),
+DetBotones decimal (10,2)
+CONSTRAINT FK_DetalleDiseño_Diseño FOREIGN KEY (DiseñoId) REFERENCES Diseño (DisId)
+);
+
+Create table Materiales(
+id int identity(1,1) primary key,
+codigo char(9) not null, 
+producto varchar(25) not null,
+cantidad decimal (10,2)
+);
